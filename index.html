@@ -8,6 +8,11 @@
     <meta name="author" content="">
     <link rel="icon" href="resources/img/favicon.ico">
 
+    <meta property="og:title" content="LOTTO WEB"/>
+    <meta property="og:url" content="https://jooonak.github.io/lotto/"/>
+    <meta property="og:image" content="https://jooonak.github.io/lotto/resources/img/back.jpg"/>
+    <meta property="og:description" content=""/>
+
     <title>LOTTERY PAGE FOR SUN-A LEE</title>
 
     <!-- Bootstrap core CSS -->
@@ -29,41 +34,88 @@
     <![endif]-->
 
     <style type="text/css">
-        .lotto_balls {
-            float: left;
-            width: 100%;
-            margin: 0 auto;
+        @media (min-width: 1024px) {
+            .lotto_balls {
+                float: left;
+                width: 100%;
+                margin: 0 auto;
+            }
+
+            .center {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .ye:nth-child(2n) {
+                background: url('resources/img/beach-ball3.png') no-repeat center center;
+                height: 128px;
+            }
+
+            .ye:nth-child(odd) {
+                background: url('resources/img/beach-ball4.png') no-repeat center center;
+                height: 128px;
+            }
+
+            .ye {
+                text-align: center;
+                position: relative;
+                float: left;
+                margin-bottom: 20px;
+            }
+
+            .center {
+                font-size: 5em;
+            }
+
+            .imgs {
+                position: relative;
+            }
+
+            .click {
+                position: absolute;
+                top: -15%;
+                left: 62%;
+            }
+
+            .btn {
+                margin-left: 15px;
+            }
         }
+        @media (max-width: 1024px) {
+            .btn {
+                margin-left: 15px;
+            }
 
-        .center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+            .center {
+                font-size: 2em;
+                font-weight: 600;
+            }
 
-        .ye {
-            text-align: center;
-            position: relative;
-            float: left;
-            margin-bottom: 50px;
+            .click {
+                position: absolute;
+                top: -30%;
+                left: 62%;
+                width: 30%;
+            }
 
-        }
+            .ye:nth-child(2n) {
+                background: url('resources/img/beach-ball2.png') no-repeat center center;
+                background-size: 40px;
+            }
 
-        .center {
-            font-size: 5em;
-        }
+            .ye:nth-child(odd) {
+                background: url('resources/img/beach-ball.png') no-repeat center center;
+                background-size: 40px;
+            }
 
-        .imgs {
-            position: relative;
-        }
-
-        .click {
-            position: absolute;
-            top: -42%;
-            left: 62%;
-            display: none;
-
+            .ye {
+                text-align: center;
+                position: relative;
+                float: left;
+                margin-bottom: 20px;
+            }
         }
     </style>
 </head>
@@ -81,7 +133,7 @@
                 <h2> ★ </h2>
                 <h1>★ <b>1등</b> 가즈아~★</h1>
                 <h3></h3>
-                <h4 style="margin-top: 120px;">↓ 아래 이미지를 클릭</h4>
+                <h4 style="margin-top: 120px;">↓ 아래 이미지를 클릭하세요</h4>
             </div>
         </div>
         <!--/row-->
@@ -92,9 +144,9 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1 centered"  style="margin-bottom: 50px; margin-top: 50px;">
+        <div class="col-md-10 col-md-offset-1 centered"  style="margin-bottom: 35px; margin-top: 35px;">
             <div class="imgs">
-                <img class="start_img" src="resources/img/GL_lotto.png" width="500">
+                <img class="start_img" src="resources/img/GL_lotto.png" style="width: 100%">
                 <img class="click" src="resources/img/click_me.png">
             </div>
             <div class="row">
@@ -124,8 +176,8 @@
             <div class="col-md-8 col-md-offset-2">
                 <p>
                     Work with Basic was an awesome experience.<br />
-                    They understood exactly what we want<br />
-                    and what we need for our brand.
+                    They understood exactly what we want.<br />
+                    made by Joonhak for Sun-a
                 </p>
 
             </div>
@@ -160,7 +212,10 @@
 <script src="resources/js/makeNumber.js"></script>
 <script type="text/javascript">
 
-    $(document).ready(function() {
+    if ($(window).width() < 1024) {
+        $('.click').css('display', 'block');
+    } else {
+        $('.click').css('display', 'none');
 
         $(function(){
             $('.start_img').hover(function(e){
@@ -170,11 +225,14 @@
             });
         });
 
+    }
+    $(document).ready(function() {
+
         $('.start_img').click(function(e){
             if ($('.ye').length > 24){
                 swal({
-                    title: 'Are you sure?',
-                    text: "이전 목록이 사라집니다",
+                    title: 'need more Lotto numbers?',
+                    text: "이전 목록이 사라집니다.",
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -214,10 +272,10 @@
             var j = 0;
             for (var i = $('.ye').length - 6; i < $('.ye').length; i++) {
                 if (i < 0) {
-                    $($('.ye')[j]).css({'transform' : 'rotateY(' + (720 * (j+1)) + 'deg)', 'transition-duration' : 600 * (j+1) + 'ms'});
+                    $($('.ye')[j]).css({'transform' : 'rotateY(' + (720 * (j+1)) + 'deg)', 'transition-duration' : 550 * (j+1) + 'ms'});
                     j++;
                 } else {
-                    $($('.ye')[i]).css({'transform' : 'rotateY(' + (720 * (j+1)) + 'deg)', 'transition-duration' : 600 * (j+1) + 'ms'});
+                    $($('.ye')[i]).css({'transform' : 'rotateY(' + (720 * (j+1)) + 'deg)', 'transition-duration' : 550 * (j+1) + 'ms'});
                     j++;
                 }
             }
@@ -231,10 +289,10 @@
 
             for (var i = 0; i < lottoNum.length; i++) {
                 if(i % 2 === 0) {
-                    str += '<div class="ye col-lg-2 col-md-2 col-sm-2 col-xs-2"><img class="ball" src="resources/img/beach-ball (2).png"><span class="center">';
+                    str += '<div class="ye col-lg-2 col-md-2 col-sm-2 col-xs-2"><span class="center">';
                     str += lottoNum[i] + '</span></div>';
                 } else {
-                    str += '<div class="ye col-lg-2 col-md-2 col-sm-2 col-xs-2"><img class="ball" src="resources/img/beach-ball (3).png"><span class="center">';
+                    str += '<div class="ye col-lg-2 col-md-2 col-sm-2 col-xs-2"><span class="center">';
                     str += lottoNum[i] + '</span></div>';
                 }
             }
